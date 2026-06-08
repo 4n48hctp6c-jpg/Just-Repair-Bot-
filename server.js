@@ -6,7 +6,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY.trim()
+ });
 
 const sessions = {};
 const SESSION_TTL = 60 * 60 * 1000;
