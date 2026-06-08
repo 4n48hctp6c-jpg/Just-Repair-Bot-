@@ -6,8 +6,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY.trim()
- });
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY?.trim() });
 
 const sessions = {};
 const SESSION_TTL = 60 * 60 * 1000;
@@ -47,13 +46,17 @@ Do NOT handoff for pricing questions or while collecting info.
 Before every handoff say: "Thanks for the information. I am forwarding your details to an operator for booking and further assistance."
 After handoff message add on a new line: [HANDOFF_READY]
 
-RULES:
+FORMATTING RULES (VERY IMPORTANT):
+- Write ALL replies in plain text only.
+- Do NOT use markdown, asterisks, bold, underscores, bullet symbols, or greater-than quote marks.
+- When giving the summary, write simple labeled lines like "Name: John Smith" with each item on its own line, no special characters.
+
+GENERAL RULES:
 - Polite, clear, professional always.
 - Do NOT guarantee same-day service.
 - Do NOT deeply troubleshoot.
 - Do NOT quote repair totals beyond the visit fee range.`;
-- Write ALL replies in plain text only. Do NOT use markdown, asterisks, bold, bullet symbols, or > quote marks.
-- When giving the summary, write it as simple labeled lines like "Name: John Smith" with no special formatting.
+
 setInterval(() => {
   const now = Date.now();
   for (const id in sessions) {
@@ -88,7 +91,7 @@ app.post("/chat", async (req, res) => {
       version: "v2",
       content: {
         messages: [{ type: "text", text: cleanReply }],
-        actions: isHandoff ? [{ action: "send_flow", flow_ns: "your_handoff_flow_ns" }] : [],
+        actions: isHandoff ? [{ action: "handoff" }] : [],
       },
     });
   } catch (err) {
