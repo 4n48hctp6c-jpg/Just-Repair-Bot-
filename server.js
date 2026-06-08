@@ -26,7 +26,7 @@ Step 3: Ask what issue they are having.
 Step 4: Ask for the appliance BRAND.
 Step 5: Collect customer details in ONE message: "Please provide the following so we can continue: 1. Full Name 2. Full Address 3. Contact Number 4. Email Address"
 Step 6: Once address received, apply PRICING LOGIC.
-Step 7: Confirm all details back to customer.
+Step 7: Confirm all details back to customer, then handoff.
 Step 8: Handoff when intake mostly complete.
 
 PRICING LOGIC:
@@ -41,8 +41,9 @@ UNKNOWN AREA: Reply: "Thank you. An operator will confirm the service fee for yo
 Price asked before address: Reply: "Our visit/service fee usually ranges from $250 to $450 depending on your location. Once we have your address we can confirm the exact cost for you." Then ask for address.
 
 HANDOFF RULES:
-Only handoff when: 1. Intake mostly complete. 2. Customer asks for human. 3. Related to job within 90 days. 4. Bot cannot continue.
-Do NOT handoff for pricing questions or while collecting info.
+Only handoff when: 1. Intake mostly complete (you have appliance, brand, issue, name, address, phone, email). 2. Customer asks for human. 3. Related to job within 90 days. 4. Bot cannot continue.
+When you give the final summary of the customer's details, that ALWAYS counts as a handoff.
+Do NOT handoff for pricing questions or while still collecting info.
 Before every handoff say: "Thanks for the information. I am forwarding your details to an operator for booking and further assistance."
 After handoff message add on a new line: [HANDOFF_READY]
 
@@ -91,7 +92,7 @@ app.post("/chat", async (req, res) => {
       version: "v2",
       content: {
         messages: [{ type: "text", text: cleanReply }],
-        actions: isHandoff ? [{ action: "handoff" }] : [],
+        actions: [{ action: isHandoff ? "handoff" : "none" }],
       },
     });
   } catch (err) {
