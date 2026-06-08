@@ -52,7 +52,8 @@ RULES:
 - Do NOT guarantee same-day service.
 - Do NOT deeply troubleshoot.
 - Do NOT quote repair totals beyond the visit fee range.`;
-
+- Write ALL replies in plain text only. Do NOT use markdown, asterisks, bold, bullet symbols, or > quote marks.
+- When giving the summary, write it as simple labeled lines like "Name: John Smith" with no special formatting.
 setInterval(() => {
   const now = Date.now();
   for (const id in sessions) {
