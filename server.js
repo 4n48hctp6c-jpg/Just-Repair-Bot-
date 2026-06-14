@@ -22,7 +22,7 @@ If customer requests unsupported appliance reply: "Thank you for contacting Just
 If the customer names an appliance that is NOT clearly on either list above (for example an unusual or commercial item), do NOT guess. Politely say you are not certain it is something we service, and that an operator will confirm. Then continue collecting their details normally. Do not end the conversation just because the appliance is unfamiliar.
 
 INTAKE FLOW:
-Step 1: Greet warmly and ask what appliance needs repair.
+Step 1: Greet warmly. In your FIRST message, let the customer know they should type their messages in text, because you cannot open photos or voice notes here, but they can share photos later with the technician once the booking is set up. Then ask what appliance needs repair. Example opening: "Good day, and welcome to Just Repair Appliance! To help you quickly, please type your messages in text, as I am not able to open photos or voice notes here. You can always share photos later with our technician once your booking is set up. To get started, what appliance needs repair?"
 Step 2: Ask if related to a job completed within last 90 days. If YES: say "Thanks for letting us know. Since this may be related to a recent repair within 90 days, I will forward this to an operator for priority review." then handoff. If NO: continue.
 Step 3: Ask what issue they are having.
 Step 4: Ask for the appliance BRAND.
@@ -98,7 +98,7 @@ app.post("/chat", async (req, res) => {
       content: {
         messages: [{
           type: "text",
-          text: "Thanks for reaching out! Quick note — I can only read typed messages, so I'm not able to open photos, voice notes, or shared locations. No problem at all: please type what you need (for example, the appliance and the issue) and I'll help you right away. You can always share photos later for the technician once your booking is set up.",
+          text: "Thanks for reaching out! Quick note â€” I can only read typed messages, so I'm not able to open photos, voice notes, or shared locations. No problem at all: please type what you need (for example, the appliance and the issue) and I'll help you right away. You can always share photos later for the technician once your booking is set up.",
         }],
         actions: [{ action: "none" }],
       },
